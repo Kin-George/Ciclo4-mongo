@@ -44,6 +44,14 @@ public class CookwaresService {
                     aDb.get().setCategory(a.getCategory());
                 }
 
+                if (a.getMateriales() != null){
+                    aDb.get().setMateriales(a.getMateriales());
+                }
+
+                if (a.getDimensiones() != null){
+                    aDb.get().setDimensiones(a.getDimensiones());
+                }
+
                 if (a.getDescription() != null){
                     aDb.get().setDescription(a.getDescription());
                 }
