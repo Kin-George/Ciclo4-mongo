@@ -1,11 +1,10 @@
 package ciclo4.reto2.controlador;
 
-import ciclo4.reto2.servicio.UserService;
-import ciclo4.reto2.modelo.User;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,49 +17,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import ciclo4.reto2.modelo.Order;
+import ciclo4.reto2.servicio.OrderService;
+
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/order")
 @CrossOrigin("*")
-public class UserController {
-    
+public class OrderController {
     @Autowired
-    private UserService userService;
+    private OrderService orderService;
 
     @GetMapping("/all")
-    public List<User> getAll() {
-        return userService.getAll();
+    public List<Order> getAll(){
+        return orderService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<User> getUser(@PathVariable("id") Integer id){
-        return userService.getUser(id);
+    public Optional<Order> getUser(@PathVariable("id") Integer id){
+        return orderService.getOrder(id);
     }
-    
+
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public User create(@RequestBody User user) {
-        return userService.create(user);
+    public Order create(@RequestBody Order order){
+        return orderService.create(order);
     }
-    
+
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public User update(@RequestBody User user) {
-        return userService.update(user);
+    public Order update(@RequestBody Order order){
+        return orderService.update(order);
     }
-    
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int id) {
-        return userService.delete(id);
+    public boolean delete(@PathVariable("id") int id){
+        return orderService.delete(id);
+    }
+
+    @GetMapping("/zona/{zone}")
+    public List<Order> getOrdersByZone(@PathVariable("zone") String zone){
+        return orderService.getOrderByZone(zone);
     }
     
-    @GetMapping("/{email}/{password}")
-    public User authenticateUser(@PathVariable("email") String email, @PathVariable("password") String password) {
-        return userService.authenticateUser(email, password);
-    }
-    
-    @GetMapping("/emailexist/{email}")
-    public boolean emailExists(@PathVariable("email") String email) {
-        return userService.emailExists(email);
-    }
 }

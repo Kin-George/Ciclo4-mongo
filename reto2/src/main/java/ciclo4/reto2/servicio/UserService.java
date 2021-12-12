@@ -65,6 +65,14 @@ public class UserService {
                 if (user.getZone() != null) {
                     userDb.get().setZone(user.getZone());
                 }
+
+                if (user.getBirthDay() != null){
+                    userDb.get().setBirthDay(user.getBirthDay());
+                }
+
+                if (user.getMonthBirthDay() != null){
+                    userDb.get().setMonthBirthDay(user.getMonthBirthDay());
+                }
                 
                 userRepository.update(userDb.get());
                 return userDb.get();
