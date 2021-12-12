@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import ciclo4.reto2.modelo.Order;
 
-public interface interfaceOrder extends MongoRepository<Order, Integer> {
+public interface InterfaceOrder extends MongoRepository<Order, Integer> {
     List<Order> findBySalesManZone(String zone);
     
 }

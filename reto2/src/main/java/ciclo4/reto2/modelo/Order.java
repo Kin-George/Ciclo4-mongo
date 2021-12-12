@@ -25,7 +25,7 @@ public class Order {
     private Integer id;
     private Date registerDay;
     private String status;
-    private User SalesMan;
+    private User salesMan;
     private Map<String, Cookwares> products;
     private Map<String, Integer> quantities;
 

@@ -13,28 +13,30 @@ public class OrderService {
     @Autowired
     private OrderRepositorio orderRepository;
 
-    public List<Order> getAll(){
+    public List<Order> getAll() {
         return orderRepository.getAll();
     }
 
-    public Optional<Order> getOrder(int id){
+    public Optional<Order> getOrder(int id) {
+        
         return orderRepository.getOrder(id);
     }
 
-    public Order create(Order order){
-        if (order.getId() == null){
-            return order;
-        }else{
-            return orderRepository.create(order);
+    public Order create(Order order) {
+        if (order.getId() == null) {
+            return order;            
+        }else {
+            return orderRepository.create(order);         
         }
     }
 
-    public Order update(Order order){
-        if (order.getId() != null){
+    public Order update(Order order) {
+        if (order.getId() != null) {
+            
             Optional<Order> orderDb = orderRepository.getOrder(order.getId());
 
-            if (!orderDb.isEmpty()){
-                
+            if (!orderDb.isEmpty()) {
+
                 if (order.getId() != null){
                     orderDb.get().setId(order.getId());
                 }
@@ -59,13 +61,13 @@ public class OrderService {
                 return orderDb.get();
             } else {
                 return order;
-            }
+            }            
         } else {
             return order;
         }
     }
 
-    public boolean delete(int orderId){
+    public boolean delete(int orderId) {
         Boolean aBoolean = getOrder(orderId).map(order -> {
             orderRepository.delete(order);
             return true;

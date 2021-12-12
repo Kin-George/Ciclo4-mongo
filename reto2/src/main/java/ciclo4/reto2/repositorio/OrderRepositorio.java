@@ -5,13 +5,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ciclo4.reto2.interfaces.interfaceOrder;
+import ciclo4.reto2.interfaces.InterfaceOrder;
 import ciclo4.reto2.modelo.Order;
 
 @Repository
 public class OrderRepositorio {
     @Autowired
-    private interfaceOrder orderCrudRepository;
+    private InterfaceOrder orderCrudRepository;
 
     public List<Order> getAll(){
         return orderCrudRepository.findAll();
